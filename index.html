@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.pricing {
+  width: 300px;
+  margin: 20px auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ccc; /* fixed typo */
+  padding: 20px;
+  text-align: left;
+  border-radius: 8px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 18px;
+  color: green;
+}
+
+.features {
+  list-style: none;
+  padding-left: 0;
+}
+
+.features li {
+  padding: 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.btn {
+  background: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background: darkblue;
+}
+</style>
+</head>
+<body>
+
+<div id="pricing-container"></div>
+
+<script>
+function createPricingCard({ title, price, features }) {
+  // Create card container
+  const card = document.createElement('div');
+  card.className = 'pricing';
+
+  // Title
+  const h2 = document.createElement('h2');
+  h2.className = 'title';
+  h2.textContent = title;
+  card.appendChild(h2);
+
+  // Price
+  const p = document.createElement('p');
+  p.className = 'price';
+  p.textContent = price;
+  card.appendChild(p);
+
+  // Features
+  const ul = document.createElement('ul');
+  ul.className = 'features';
+  features.forEach(f => {
+    const li = document.createElement('li');
+    li.textContent = f;
+    ul.appendChild(li);
+  });
+  card.appendChild(ul);
+
+  // Button
+  const btn = document.createElement('button');
+  btn.className = 'btn';
+  btn.textContent = 'Start Trial';
+  btn.onclick = () => alert(`Trial started for ${title}!`);
+  card.appendChild(btn);
+
+  return card;
+}
+
+// Example usage:
+const plans = [
+  {
+    title: 'Basic Plan',
+    price: '$9.99 /month',
+    features: ['1 GB Storage', 'Basic Support', 'All Core Features']
+  },
+  {
+    title: 'Pro Plan',
+    price: '$19.99 /month',
+    features: ['10 GB Storage', 'Priority Support', 'All Core Features', 'Advanced Analytics']
+  }
+];
+
+const container = document.getElementById('pricing-container');
+plans.forEach(plan => {
+  container.appendChild(createPricingCard(plan));
+});
+</script>
+
+</body>
+</html>
